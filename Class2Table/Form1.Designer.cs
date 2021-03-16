@@ -25,16 +25,16 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btn_getOne = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.kundIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firmaNamnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kontaktNamnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.faxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.omsattningDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kunderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_getOne = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kunderBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -53,45 +53,8 @@
             this.dataGridView1.DataSource = this.kunderBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(44, 74);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(443, 280);
+            this.dataGridView1.Size = new System.Drawing.Size(443, 283);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(44, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(443, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Hämta data och fyll listboxen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_getOne
-            // 
-            this.btn_getOne.Location = new System.Drawing.Point(545, 86);
-            this.btn_getOne.Name = "btn_getOne";
-            this.btn_getOne.Size = new System.Drawing.Size(200, 23);
-            this.btn_getOne.TabIndex = 3;
-            this.btn_getOne.Text = "Hämta en kund";
-            this.btn_getOne.UseVisualStyleBackColor = true;
-            this.btn_getOne.Click += new System.EventHandler(this.btn_getOne_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(542, 129);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Kunduppgifter: ";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(545, 40);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(105, 30);
-            this.listBox1.TabIndex = 6;
             // 
             // kundIDDataGridViewTextBoxColumn
             // 
@@ -132,11 +95,48 @@
             // 
             this.kunderBindingSource.DataSource = typeof(Class2Table.kunder);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(44, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(443, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Hämta data och fyll listboxen";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_getOne
+            // 
+            this.btn_getOne.Location = new System.Drawing.Point(545, 86);
+            this.btn_getOne.Name = "btn_getOne";
+            this.btn_getOne.Size = new System.Drawing.Size(200, 23);
+            this.btn_getOne.TabIndex = 3;
+            this.btn_getOne.Text = "Hämta en kund";
+            this.btn_getOne.UseVisualStyleBackColor = true;
+            this.btn_getOne.Click += new System.EventHandler(this.btn_getOne_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(542, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Kunduppgifter: ";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(545, 40);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(105, 30);
+            this.listBox1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 450);
+            this.ClientSize = new System.Drawing.Size(855, 415);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_getOne);

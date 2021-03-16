@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 namespace Class2Table {
     public partial class Form1 : Form {
 
-        DBKommunikator dbKomm; 
+        DBKommunikator dbKomm;
         DataTable dtab = new DataTable();
         MySqlDataAdapter mdat = new MySqlDataAdapter();
         string connectionString = "SERVER=localhost;DATABASE=northwind;UID=lennart;PASSWORD=abcdef"; // ändra för dina behov
@@ -22,8 +22,7 @@ namespace Class2Table {
             InitializeComponent();
             conn = new MySqlConnection(connectionString);
             dbKomm = new DBKommunikator();
-            dbKomm.ConnectionString = connectionString; 
-
+            dbKomm.ConnectionString = connectionString;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -42,8 +41,8 @@ namespace Class2Table {
             dataGridView1.DataSource = dtab;
             conn.Close();
 
-            foreach(DataRow dr in dtab.Rows){
-             listBox1.Items.Add(dr.Field<string>("Kund_ID"));
+            foreach (DataRow dr in dtab.Rows) {
+                listBox1.Items.Add(dr.Field<string>("Kund_ID"));
             }
 
             /* Variant #1
@@ -65,7 +64,7 @@ namespace Class2Table {
             MySqlCommand enKundCmd = kunder.generateSelectCmd(kund_ID);
             DataRow dr = dbKomm.SelectOneCommand(enKundCmd);
             kunder k = new kunder(dr);
-            label1.Text = "Kunduppgifter: " + Environment.NewLine + k.ToString(); 
+            label1.Text = "Kunduppgifter: " + Environment.NewLine + k.ToString();
 
         }
     }
