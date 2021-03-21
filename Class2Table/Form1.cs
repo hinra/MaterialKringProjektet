@@ -15,11 +15,14 @@ namespace Class2Table {
         DBKommunikator dbKomm;
         DataTable dtab = new DataTable();
         MySqlDataAdapter mdat = new MySqlDataAdapter();
-        string connectionString = "SERVER=localhost;DATABASE=northwind;UID=lennart;PASSWORD=abcdef"; // ändra för dina behov
+        string connectionString = null; // ändra för dina behov
         MySqlConnection conn;
 
         public Form1() {
             InitializeComponent();
+
+            // läsa en sträng från Properties. Kolla Properties.Settings.Settings i SolutionExeplorer.
+            connectionString = Properties.Settings.Default["ConnectionString"].ToString(); 
             conn = new MySqlConnection(connectionString);
             dbKomm = new DBKommunikator();
             dbKomm.ConnectionString = connectionString;
@@ -61,11 +64,23 @@ namespace Class2Table {
         private void btn_getOne_Click(object sender, EventArgs e) {
             //string kund_ID = listBox1.SelectedValue.ToString();  Behov för variant #1
             string kund_ID = listBox1.SelectedItem.ToString();
-            MySqlCommand enKundCmd = kunder.generateSelectCmd(kund_ID);
+            MySqlCommand enKundCmd = Kunder.generateSelectCmd(kund_ID);
             DataRow dr = dbKomm.SelectOneCommand(enKundCmd);
-            kunder k = new kunder(dr);
+            Kunder k = new Kunder(dr);
             label1.Text = "Kunduppgifter: " + Environment.NewLine + k.ToString();
 
+        }
+        // 
+        // FormClosing anropas när Användaren försöker stänga fönstret.
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            // Spara data i Properties
+            if (DialogResult.OK == MessageBox.Show("Vill du verkligen stänga programmet?", "Are you sure?", MessageBoxButtons.YesNo)) ;
+            Form1_FormClosed(sender, null); 
+        }
+
+        // det här körs innan det verkligen stängs
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            Properties.Settings.Default["ConnectionString"] = dbKomm.ConnectionString;
         }
     }
 }

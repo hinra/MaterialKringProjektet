@@ -3,7 +3,9 @@ using System.Data;
 
 
 namespace Class2Table {
-    public class kunder {
+
+    public class Kunder {
+
         private DataRow dr;
 
         public static MySqlCommand generateSelectCmd(string id) {
@@ -14,16 +16,20 @@ namespace Class2Table {
         }
 
 
-        public kunder() {
+        public Kunder() {
             // tom konstruktör
         }
 
-        public kunder(DataRow dr) {
+        public Kunder(DataRow dr) {
             this.Kund_ID = dr.Field<string>("Kund_ID");
             this.FirmaNamn = dr.Field<string>("FirmaNamn");
             this.KontaktNamn = dr.Field<string>("KontaktNamn");
-            this.KontaktTitel = dr.Field<string>("KontaktTitel"); 
-            //...
+            this.KontaktTitel = dr.Field<string>("KontaktTitel");
+            this.Omsattning = dr.Field<int>("Omsattning");
+            //...fyll på med alla andra egenskaper
+            // OBS! Vi litar på att ingen kolumn innehåller null!
+            // nästa rad visa ett sätt att säkra upp det. 
+            this.Address = VärdeEllerStandard<string>(dr, "Address"); 
         }
 
         public string Kund_ID { get; set; }
@@ -55,5 +61,14 @@ namespace Class2Table {
                     + this.KontaktNamn 
                     + " (" + this.KontaktTitel + ")";
         }
+
+
+        // static methods
+        // 
+        private T VärdeEllerStandard<T>(DataRow row, string columnName) {
+            return row.IsNull(columnName) ? default(T) : row.Field<T>(columnName);
+        }
+
+
     }
 }
