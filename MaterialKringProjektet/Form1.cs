@@ -13,5 +13,17 @@ namespace MaterialKringProjektet {
         public Form1() {
             InitializeComponent();
         }
+
+
+        private string visaVårdetiKronor<T>(T val){
+           
+            return val.ToString() + " SEK";  
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            textBox1.AppendText(visaVårdetiKronor(120));
+
+
+        }
     }
 }

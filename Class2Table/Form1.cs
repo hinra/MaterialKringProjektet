@@ -30,6 +30,7 @@ namespace Class2Table {
 
         private void button1_Click(object sender, EventArgs e) {
 
+        // hämta från DB utan DBKommunikator
             MySqlCommand cmd = new MySqlCommand();
             // förberedda kommandot
             cmd.CommandText = "Select Kund_ID , FirmaNamn, KontaktNamn from kunder";
@@ -81,6 +82,7 @@ namespace Class2Table {
         // det här körs innan det verkligen stängs
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             Properties.Settings.Default["ConnectionString"] = dbKomm.ConnectionString;
+            Properties.Settings.Default.Save();
         }
     }
 }
