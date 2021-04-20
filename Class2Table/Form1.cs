@@ -22,7 +22,7 @@ namespace Class2Table {
             InitializeComponent();
 
             // läsa en sträng från Properties. Kolla Properties.Settings.Settings i SolutionExeplorer.
-            connectionString = Properties.Settings.Default["ConnectionString"].ToString(); 
+            connectionString = Properties.Settings.Default["ConnectionString"].ToString();
             conn = new MySqlConnection(connectionString);
             dbKomm = new DBKommunikator();
             dbKomm.ConnectionString = connectionString;
@@ -30,7 +30,7 @@ namespace Class2Table {
 
         private void button1_Click(object sender, EventArgs e) {
 
-        // hämta från DB utan DBKommunikator
+            // hämta från DB utan DBKommunikator
             MySqlCommand cmd = new MySqlCommand();
             // förberedda kommandot
             cmd.CommandText = "Select Kund_ID , FirmaNamn, KontaktNamn from kunder";
@@ -75,8 +75,14 @@ namespace Class2Table {
         // FormClosing anropas när Användaren försöker stänga fönstret.
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             // Spara data i Properties
-            if (DialogResult.OK == MessageBox.Show("Vill du verkligen stänga programmet?", "Are you sure?", MessageBoxButtons.YesNo)) ;
+            if (DialogResult.OK == MessageBox.Show("Vill du verkligen stänga programmet?", "Are you sure?", MessageBoxButtons.YesNo)) { 
             Form1_FormClosed(sender, null); 
+            } 
+            else 
+            {
+                e.Cancel = true; // Behövs. Annars går det ändå vidare till FormClosed!
+                                 // Kolla även https://stackoverflow.com/questions/47788288/how-to-cancel-closing-winform/47788302
+            }
         }
 
         // det här körs innan det verkligen stängs
