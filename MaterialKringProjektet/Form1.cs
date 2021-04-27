@@ -39,7 +39,7 @@ namespace MaterialKringProjektet {
                     MovieInfo product = await response.Content.ReadAsAsync < MovieInfo > ();
                     textBox1.AppendText(product.Title + product.Year +  product.Released);
                 }
-                else {
+                else { 
                     textBox1.AppendText(response.Headers.ToString()); 
                 }
             }
