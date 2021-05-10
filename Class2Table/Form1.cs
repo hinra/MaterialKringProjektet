@@ -75,7 +75,7 @@ namespace Class2Table {
         // FormClosing anropas när Användaren försöker stänga fönstret.
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
             // Spara data i Properties
-            if (DialogResult.OK == MessageBox.Show("Vill du verkligen stänga programmet?", "Are you sure?", MessageBoxButtons.YesNo)) { 
+            if (DialogResult.Yes == MessageBox.Show("Vill du verkligen stänga programmet?", "Are you sure?", MessageBoxButtons.YesNo)) { 
             Form1_FormClosed(sender, null); 
             } 
             else 
@@ -89,6 +89,18 @@ namespace Class2Table {
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             Properties.Settings.Default["ConnectionString"] = dbKomm.ConnectionString;
             Properties.Settings.Default.Save();
+            this.Dispose(); 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex >= 0) {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex]; // hämta hela raden 
+                string kundID  = row.Cells[0].Value.ToString();
+                MySqlCommand enKundCmd = Kunder.generateSelectCmd(kundID);
+                DataRow dr = dbKomm.SelectOneCommand(enKundCmd);
+                Kunder k = new Kunder(dr);
+                label1.Text = "Kunduppgifter: " + Environment.NewLine + k.ToString();
+            }
         }
     }
 }

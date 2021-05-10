@@ -21,12 +21,10 @@ namespace MaterialKringProjektet {
         
 
         private void button1_Click(object sender, EventArgs e) {
-
-            _ = RunAsync(); 
-
+            _ = RunAsync();
         }
 
-         async Task RunAsync() {
+        private  async Task RunAsync() {
             using (var client = new HttpClient()) {
              //   client.Timeout = TimeSpan.FromSeconds(10);
                 client.BaseAddress = new Uri("http://www.omdbapi.com/");
@@ -36,8 +34,8 @@ namespace MaterialKringProjektet {
                 // New code:
                 HttpResponseMessage response = await client.GetAsync("?apikey=ee15dad6&t=the%20Godfather");
                 if (response.IsSuccessStatusCode) {
-                    MovieInfo product = await response.Content.ReadAsAsync < MovieInfo > ();
-                    textBox1.AppendText(product.Title + product.Year +  product.Released);
+                    MovieInfo aMovie = await response.Content.ReadAsAsync < MovieInfo > ();
+                    textBox1.AppendText(aMovie.Title + aMovie.Year +  aMovie.Released);
                 }
                 else { 
                     textBox1.AppendText(response.Headers.ToString()); 
