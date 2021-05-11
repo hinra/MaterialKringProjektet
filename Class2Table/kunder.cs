@@ -6,7 +6,7 @@ namespace Class2Table {
 
     public class Kunder {
 
-        private DataRow dr;
+       
 
         public static MySqlCommand generateSelectCmd(string id) {
 
@@ -24,8 +24,8 @@ namespace Class2Table {
             this.Kund_ID = dr.Field<string>("Kund_ID");
             this.FirmaNamn = dr.Field<string>("FirmaNamn");
             this.KontaktNamn = dr.Field<string>("KontaktNamn");
-            this.KontaktTitel = dr.Field<string>("KontaktTitel");
-            this.Omsattning = dr.Field<int>("Omsattning");
+            this.KontaktTitel = dr.Table.Columns.Contains("KontaktTitel")  ? dr.Field<string>("KontaktTitel"):"";
+            this.Omsattning = dr.Table.Columns.Contains("Omsattning") ? dr.Field<int>("Omsattning") : 0;
             //...fyll på med alla andra egenskaper
             // OBS! Vi litar på att ingen kolumn innehåller null!
             // nästa rad visa ett sätt att säkra upp det. 
@@ -66,6 +66,7 @@ namespace Class2Table {
         // static methods
         // 
         private T VärdeEllerStandard<T>(DataRow row, string columnName) {
+            if (!row.Table.Columns.Contains(columnName)) return default(T);
             return row.IsNull(columnName) ? default(T) : row.Field<T>(columnName);
         }
 

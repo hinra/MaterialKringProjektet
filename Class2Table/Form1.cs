@@ -17,6 +17,7 @@ namespace Class2Table {
         MySqlDataAdapter mdat = new MySqlDataAdapter();
         string connectionString = null; // ändra för dina behov
         MySqlConnection conn;
+        List<Kunder> allaKunder = new List<Kunder>();
 
         public Form1() {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace Class2Table {
 
             foreach (DataRow dr in dtab.Rows) {
                 listBox1.Items.Add(dr.Field<string>("Kund_ID"));
+                allaKunder.Add(new Kunder(dr)); 
             }
 
             /* Variant #1

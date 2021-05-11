@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 namespace Class2Table {
     class DBKommunikator {
 
-        DataTable dtr; 
+       
          
         public string ConnectionString { get; set; }
 
@@ -19,7 +19,7 @@ namespace Class2Table {
         }
 
         public DataRow SelectOneCommand(MySqlCommand cmd){
-            DataRow dr = null;
+           
             MySqlConnection conn = new MySqlConnection(ConnectionString); 
             cmd.Connection = conn;
             DataTable dtab = new DataTable();
